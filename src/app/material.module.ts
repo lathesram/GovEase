@@ -14,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
 
 const materialModules = [
   MatToolbarModule,
@@ -32,7 +33,8 @@ const materialModules = [
   MatExpansionModule,
   MatDialogModule,
   MatProgressSpinnerModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatTableModule,
 ];
 
 @NgModule({

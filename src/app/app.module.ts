@@ -7,9 +7,10 @@ import { MaterialModule } from './material.module';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { DocumentUploadComponent } from './document-upload/document-upload.component';
+import { DocumentTrackingComponent } from './document-tracking/document-tracking.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavComponent, DocumentUploadComponent],
+  declarations: [AppComponent, HomeComponent, NavComponent, DocumentUploadComponent, DocumentTrackingComponent],
   imports: [BrowserModule, AppRoutingModule, MaterialModule],
   exports: [MaterialModule],
   providers: [],

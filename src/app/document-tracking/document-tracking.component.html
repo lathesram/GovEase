@@ -1,0 +1,65 @@
+<div class="tracking-page">
+    <header class="tracking-header text-center">
+        <h1 class="text-3xl font-bold">Document Submission Tracking</h1>
+        <p class="text-gray-600 mt-2">Track the status of your submitted documents in real-time</p>
+    </header>
+
+    <main class="tracking-container">
+        <table mat-table [dataSource]="documentData" class="mat-elevation-z8 w-full">
+            <ng-container matColumnDef="documentId">
+                <th mat-header-cell *matHeaderCellDef> Document ID </th>
+                <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="documentTitle">
+                <th mat-header-cell *matHeaderCellDef> Document Title </th>
+                <td mat-cell *matCellDef="let element"> {{ element.title }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="submissionDate">
+                <th mat-header-cell *matHeaderCellDef> Submission Date </th>
+                <td mat-cell *matCellDef="let element"> {{ element.submissionDate | date }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="processingOfficer">
+                <th mat-header-cell *matHeaderCellDef> Processing Officer </th>
+                <td mat-cell *matCellDef="let element"> {{ element.officer }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element">
+                    <span [ngClass]="{
+              'text-green-600': element.status === 'Approved',
+              'text-yellow-500': element.status === 'Pending',
+              'text-red-500': element.status === 'Rejected'
+            }">
+                        {{ element.status }}
+                    </span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="remarks">
+                <th mat-header-cell *matHeaderCellDef> Remarks </th>
+                <td mat-cell *matCellDef="let element"> {{ element.remarks }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="approvalDate">
+                <th mat-header-cell *matHeaderCellDef> Approval Date </th>
+                <td mat-cell *matCellDef="let element"> {{ element.approvalDate ? (element.approvalDate | date) : 'N/A' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="statusTime">
+                <th mat-header-cell *matHeaderCellDef> Status Time </th>
+                <td mat-cell *matCellDef="let element"> {{ element.statusTime | date:'shortTime' }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div *ngIf="documentData.length === 0" class="mt-4 text-gray-600">
+            No submissions found. Upload documents to track their status.
+        </div>
+    </main>
+</div>
