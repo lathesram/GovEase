@@ -25,6 +25,18 @@
         <mat-icon>analytics</mat-icon>
         <span class="nav-text">Submission Tracking</span>
       </a>
+
+      <!-- Request Submission-->
+      <a mat-list-item [routerLink]="['/request-submission']" routerLinkActive="active" class="nav-item">
+        <mat-icon>assured_workload</mat-icon>
+        <span class="nav-text">Request Submission</span>
+      </a>
+
+      <!-- Submitted Requests-->
+      <a mat-list-item [routerLink]="['/submitted-requests']" routerLinkActive="active" class="nav-item">
+        <mat-icon>list</mat-icon>
+        <span class="nav-text">Submitted Requests</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 

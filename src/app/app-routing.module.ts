@@ -3,27 +3,38 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DocumentUploadComponent } from './document-upload/document-upload.component';
 import { DocumentTrackingComponent } from './document-tracking/document-tracking.component';
+import { ServiceRequestComponent } from './service-request/service-request.component';
+import { SubmittedRequestsTableComponent } from './submitted-requests-table/submitted-requests-table.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     title: 'Home',
-    component: HomeComponent
-  },  
-  {
-    path:'upload-document',
-    title: 'Upload Document',
-    component: DocumentUploadComponent
+    component: HomeComponent,
   },
   {
-    path:'track-document',
+    path: 'upload-document',
+    title: 'Upload Document',
+    component: DocumentUploadComponent,
+  },
+  {
+    path: 'track-document',
     title: 'Track Documents',
-    component: DocumentTrackingComponent
+    component: DocumentTrackingComponent,
+  },
+  {
+    path: 'request-submission',
+    title: 'Request Submission',
+    component: ServiceRequestComponent,
+  },
+  {
+    path: 'submitted-requests',
+    component: SubmittedRequestsTableComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
