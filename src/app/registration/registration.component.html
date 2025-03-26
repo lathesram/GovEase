@@ -1,0 +1,60 @@
+<div class="registration-page">
+    <header class="registration-header">
+        <h1 class="text-3xl font-bold text-center">Register: Join Us Today!</h1>
+        <p class="text-justify text-gray-600 mt-4 leading-relaxed">
+            <span class="font-semibold text-gray-800">Fill out the form</span> to become a part of our community. 
+            Ensure all details are <span class="font-semibold">accurate</span> for a seamless registration process.
+        </p>
+    </header>
+
+    <main class="registration-container">
+        <form [formGroup]="registrationForm" (ngSubmit)="onRegister()" class="registration-form mb-3">
+            <mat-form-field appearance="outline" class="col-12 mb-4">
+                <mat-label>Full Name</mat-label>
+                <input matInput placeholder="Enter full name" formControlName="fullName" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-12 mb-4">
+                <mat-label>Name with Initial</mat-label>
+                <input matInput placeholder="Name with Initial" formControlName="nameWithInitial" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-12 mb-4">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Enter your email" formControlName="email" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-12 mb-4">
+                <mat-label>Address</mat-label>
+                <textarea matInput placeholder="Enter address" formControlName="address"></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-12 mb-4">
+                <mat-label>Phone</mat-label>
+                <input matInput placeholder="Enter phone number" formControlName="phone" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-12 mb-4">
+                <mat-label>Mobile</mat-label>
+                <input matInput placeholder="Enter mobile number" formControlName="mobile" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-12 mb-4">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dob" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-12 mb-4">
+                <mat-label>NIC Number</mat-label>
+                <input matInput placeholder="Enter NIC number" formControlName="nicNumber" />
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" class="col-12" [disabled]="registrationForm.invalid">
+                Register
+            </button>
+            <button mat-button color="warn" class="col-12 mt-2" (click)="onCancel()">Cancel</button>
+        </form>
+    </main>
+</div>

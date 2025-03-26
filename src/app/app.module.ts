@@ -13,6 +13,8 @@ import { SubmittedRequestsTableComponent } from './submitted-requests-table/subm
 import { DocumentVerificationComponent } from './document-verification/document-verification.component';
 import { FormsModule } from '@angular/forms';
 import { ServiceRequestVerificationComponent } from './service-request-verification/service-request-verification.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ServiceRequestVerificationComponent } from './service-request-verificat
     SubmittedRequestsTableComponent,
     DocumentVerificationComponent,
     ServiceRequestVerificationComponent,
+    LoginComponent,
+    RegistrationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, MaterialModule, FormsModule],
   exports: [MaterialModule],

@@ -7,6 +7,7 @@ import { ServiceRequestComponent } from './service-request/service-request.compo
 import { SubmittedRequestsTableComponent } from './submitted-requests-table/submitted-requests-table.component';
 import { DocumentVerificationComponent } from './document-verification/document-verification.component';
 import { ServiceRequestVerificationComponent } from './service-request-verification/service-request-verification.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,7 @@ const routes: Routes = [
     path: 'service-request-verification',
     component: ServiceRequestVerificationComponent,
   },
+  { path: 'register', component: RegistrationComponent },
 ];
 
 @NgModule({
