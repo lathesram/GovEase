@@ -1,0 +1,62 @@
+.sidenav-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-sidenav {
+  width: 250px;
+  background-color: #ffffff; // Material light background
+  border-right: 1px solid rgba(0, 0, 0, 0.12); // Material divider color
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: #3f51b5; // Material primary color
+  color: #ffffff; // White text for contrast
+  padding: 0.5rem 1rem; // Bootstrap spacing
+}
+
+mat-sidenav-container {
+  padding-top: 64px;
+  display: flex;
+  flex-grow: 1;
+}
+
+.mat-list-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem; // Bootstrap spacing
+  transition: background-color 0.3s ease; // Smooth hover effect
+}
+
+.mat-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.04); // Material hover effect
+}
+
+.mat-list-item .mat-icon {
+  margin-right: 10px;
+  font-size: 1.25rem; // Slightly larger icon
+}
+
+.nav-text {
+  vertical-align: super;
+  margin-left: 5px;
+  font-weight: 500; // Slightly bolder text
+  color: #495057; // Bootstrap text color
+}
+
+@media (max-width: 768px) {
+  mat-sidenav {
+    width: 200px; // Adjust width for smaller screens
+  }
+
+  .mat-list-item {
+    padding: 0.5rem; // Reduce padding for smaller screens
+  }
+}
+
