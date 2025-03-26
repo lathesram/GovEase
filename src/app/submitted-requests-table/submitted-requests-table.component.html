@@ -1,0 +1,68 @@
+<div class="submitted-requests-page">
+    <header class="submitted-requests-header text-center">
+        <h1 class="text-3xl font-bold">Submitted Requests</h1>
+        <p class="text-gray-600 mt-2">Track the status of your submitted requests in real-time</p>
+    </header>
+
+    <main class="submitted-requests-container">
+        <table mat-table [dataSource]="requests" class="mat-elevation-z8 w-full">
+            <!-- Service Type Column -->
+            <ng-container matColumnDef="serviceType">
+                <th mat-header-cell *matHeaderCellDef> Service Type </th>
+                <td mat-cell *matCellDef="let request"> {{ request.serviceType }} </td>
+            </ng-container>
+
+            <!-- Submitted Documents Column -->
+            <ng-container matColumnDef="submittedDocuments">
+                <th mat-header-cell *matHeaderCellDef> Submitted Documents </th>
+                <td mat-cell *matCellDef="let request"> {{ request.submittedDocuments }} </td>
+            </ng-container>
+
+            <!-- Description Column -->
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let request"> {{ request.description }} </td>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let request">
+                    <span [ngClass]="{
+            'text-green-600': request.status === 'Approved',
+            'text-yellow-500': request.status === 'Pending',
+            'text-red-500': request.status === 'Rejected'
+          }">
+                        {{ request.status }}
+                    </span>
+                </td>
+            </ng-container>
+
+            <!-- Date of Request Column -->
+            <ng-container matColumnDef="dateOfRequest">
+                <th mat-header-cell *matHeaderCellDef> Date of Request </th>
+                <td mat-cell *matCellDef="let request"> {{ request.dateOfRequest | date }} </td>
+            </ng-container>
+
+            <!-- Approval Date Column -->
+            <ng-container matColumnDef="approvalDate">
+                <th mat-header-cell *matHeaderCellDef> Approval Date </th>
+                <td mat-cell *matCellDef="let request"> {{ request.approvalDate ? (request.approvalDate | date) : 'N/A'
+                    }} </td>
+            </ng-container>
+
+            <!-- Remarks Column -->
+            <ng-container matColumnDef="remarks">
+                <th mat-header-cell *matHeaderCellDef> Remarks </th>
+                <td mat-cell *matCellDef="let request"> {{ request.remarks }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div *ngIf="requests.length === 0" class="mt-4 text-gray-600">
+            No submitted requests found. Submit a request to track its status.
+        </div>
+    </main>
+</div>
