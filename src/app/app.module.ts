@@ -10,6 +10,9 @@ import { DocumentUploadComponent } from './document-upload/document-upload.compo
 import { DocumentTrackingComponent } from './document-tracking/document-tracking.component';
 import { ServiceRequestComponent } from './service-request/service-request.component';
 import { SubmittedRequestsTableComponent } from './submitted-requests-table/submitted-requests-table.component';
+import { DocumentVerificationComponent } from './document-verification/document-verification.component';
+import { FormsModule } from '@angular/forms';
+import { ServiceRequestVerificationComponent } from './service-request-verification/service-request-verification.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +22,11 @@ import { SubmittedRequestsTableComponent } from './submitted-requests-table/subm
     DocumentUploadComponent,
     DocumentTrackingComponent,
     ServiceRequestComponent,
-    SubmittedRequestsTableComponent
+    SubmittedRequestsTableComponent,
+    DocumentVerificationComponent,
+    ServiceRequestVerificationComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MaterialModule],
+  imports: [BrowserModule, AppRoutingModule, MaterialModule, FormsModule],
   exports: [MaterialModule],
   providers: [],
   bootstrap: [AppComponent],

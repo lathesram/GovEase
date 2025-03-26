@@ -37,6 +37,18 @@
         <mat-icon>list</mat-icon>
         <span class="nav-text">Submitted Requests</span>
       </a>
+
+      <!-- Document Verification-->
+      <a mat-list-item [routerLink]="['/document-verification']" routerLinkActive="active" class="nav-item">
+        <mat-icon>verified</mat-icon>
+        <span class="nav-text">Document Verification</span>
+      </a>
+
+      <!-- Service Request Verification-->
+      <a mat-list-item [routerLink]="['/service-request-verification']" routerLinkActive="active" class="nav-item">
+        <mat-icon>check_circle</mat-icon>
+        <span class="nav-text">Service Request Verification</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 
