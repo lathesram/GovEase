@@ -1,0 +1,44 @@
+<div class="upload-page">
+    <header class="upload-header">
+      <h1 class="text-3xl font-bold text-center">Smart Upload: Validate Before You Visit!</h1>
+    <p class="text-justify text-gray-600 mt-4 leading-relaxed">
+      <span class="font-semibold text-gray-800">Upload your documents</span> for 
+      <span class="text-blue-600">AI-driven validation</span> to ensure your submission is 
+      <span class="font-semibold">complete</span> and <span class="font-semibold">accurate</span> before visiting the office. 
+      This helps save time and minimizes the need for multiple visits.
+    </p>
+    </header>
+
+    <main class="upload-container">
+      <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" class="upload-form mb-3">
+        <mat-form-field appearance="outline" class="col-12 mb-4">
+          <mat-label>Document Title</mat-label>
+          <input matInput formControlName="title" placeholder="Enter document title">
+        </mat-form-field>
+
+        <div 
+          class="drag-drop-area border-dashed border-2 border-gray-400 rounded-lg p-6 text-center mb-4 pt-5  pb-5"
+          (drop)="onFileDropped($event)" 
+          (dragover)="onDragOver($event)" 
+          (dragleave)="onDragLeave($event)">
+          <p class="text-gray-600 mb-2">Drag and drop your file here</p>
+        </div>
+
+        <div *ngIf="selectedFile" class="mb-4 text-gray-700 text-sm">
+          Selected File: <strong>{{ selectedFile.name }}</strong>
+        </div>
+
+        <div *ngIf="uploadProgress >= 0" class="mb-4">
+          <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit" class="col-12" [disabled]="!uploadForm.valid || !selectedFile">
+          Upload
+        </button>
+      </form>
+
+      <div *ngIf="uploadStatus" class="mt-6 text-green-600 text-center">
+        {{ uploadStatus }}
+      </div>
+    </main>
+  </div>

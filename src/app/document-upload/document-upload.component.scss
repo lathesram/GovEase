@@ -1,0 +1,53 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f4f8;
+  }
+
+  .upload-page {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .upload-header {
+    margin-bottom: 2rem;
+  }
+
+  .upload-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .drag-drop-area {
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    background-color: #fafafa;
+  }
+
+  .drag-drop-area:hover {
+    background-color: #f0f0f0;
+    border-color: #90caf9;
+  }
+
+  .drag-drop-area.drag-over {
+    background-color: #e3f2fd;
+    border-color: #42a5f5;
+  }
+
+  button {
+    text-transform: none;
+    font-size: 18px;
+    padding: 0.75rem;
+    border-radius: 12px;
+  }
+
+  mat-progress-bar {
+    height: 12px;
+    border-radius: 6px;
+  }

@@ -5,18 +5,19 @@
   <span>GovEase</span>
 </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container" >
+<mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="push" opened class="mt-3">
     <mat-nav-list class="mt-5">
       <!-- Home link -->
-      <a
-        mat-list-item
-        [routerLink]="['/']"
-        routerLinkActive="active"
-        class="nav-item"
-      >
+      <a mat-list-item [routerLink]="['/']" routerLinkActive="active" class="nav-item">
         <mat-icon>home</mat-icon>
         <span class="nav-text">Home</span>
+      </a>
+
+      <!-- Upload Document-->
+      <a mat-list-item [routerLink]="['/upload-document']" routerLinkActive="active" class="nav-item">
+        <mat-icon>upload_file</mat-icon>
+        <span class="nav-text">Upload Document</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -25,4 +26,3 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
