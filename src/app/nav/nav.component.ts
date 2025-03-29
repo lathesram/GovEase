@@ -9,9 +9,20 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
-  constructor(private dialog: MatDialog) {}
+  selectedLanguage: string = 'en';
+
+  constructor(private dialog: MatDialog) {
+    // this.translate.addLangs(['en', 'ta', 'si']);
+    // this.translate.setDefaultLang(this.selectedLanguage);
+  }
 
   openLoginDialog() {
     this.dialog.open(LoginComponent);
+  }
+
+  changeLanguage(lang: string): void {
+    // this.translate.use(lang);
+    this.selectedLanguage = lang;
+    console.log(`Language changed to: ${lang}`);
   }
 }

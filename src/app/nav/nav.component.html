@@ -5,6 +5,15 @@
   <img src="assets/logo.png" alt="GovEase Logo" class="logo" />
   <span>GovEase</span>
   <span class="spacer"></span>
+
+  <mat-form-field appearance="fill" class="language-dropdown mt-3">
+    <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage($event.value)">
+      <mat-option value="en">English</mat-option>
+      <mat-option value="ta">தமிழ்</mat-option>
+      <mat-option value="si">සිංහල</mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <button mat-raised-button color="accent" (click)="openLoginDialog()">Login</button>
 </mat-toolbar>
 
