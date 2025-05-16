@@ -52,14 +52,16 @@ export class ApiService {
 
   verifyDocument(status: string, id: number) {
     const params = { status, id: id.toString() };
-    return this.http.post<any>('http://localhost:8080/api/files/verify', { params });
+    return this.http.post<any>('http://localhost:8080/api/files/verify', {
+      params,
+    });
   }
-  
 
   getRenewalRequests() {
-    return this.http.get<SubmissionRequest[]>(`${this.baseUrl}/renewal-requests`);
+    return this.http.get<SubmissionRequest[]>(
+      `${this.baseUrl}/renewal-requests`
+    );
   }
-  
 }
 
 export interface UserDetails {
