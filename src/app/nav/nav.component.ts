@@ -49,6 +49,7 @@ export class NavComponent implements OnInit, OnChanges {
               this.isAdmin = true;
               sessionStorage.setItem('role', 'Admin');
             } else {
+              this.isAdmin = false;
               sessionStorage.setItem('role', 'user');
             }
           }
