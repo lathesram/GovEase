@@ -26,7 +26,7 @@ export class LoginComponent {
   onLogin() {
     if (this.loginForm.valid) {
       console.log('Login Data:', this.loginForm.value);
-      this.dialogRef.close();
+      this.dialogRef.close(this.loginForm.value);
     }
   }
 

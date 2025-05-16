@@ -2,7 +2,7 @@
   <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle navigation">
     <mat-icon>menu</mat-icon>
   </button>
-  <img src="assets/logo.png" alt="GovEase Logo" class="logo" />
+  <!-- <img src="assets/logo.png" alt="GovEase Logo" class="logo" /> -->
   <span>GovEase</span>
   <span class="spacer"></span>
 
@@ -14,7 +14,9 @@
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button color="accent" (click)="openLoginDialog()">Login</button>
+  <button mat-raised-button color="accent" *ngIf="!isLoggedIn" (click)="openLoginDialog()">Login</button>
+  <button mat-raised-button color="accent" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
@@ -26,47 +28,62 @@
         <span class="nav-text">Home</span>
       </a>
 
-      <!-- New User -->
-      <a mat-list-item [routerLink]="['/register']" routerLinkActive="active" class="nav-item" aria-label="Register">
-        <mat-icon>person_add</mat-icon>
-        <span class="nav-text">Register</span>
-      </a>
+      <ng-container *ngIf="isLoggedIn">
+        <!-- Admin Dashboard -->
+        <a mat-list-item [routerLink]="['/admin-dashboard']" routerLinkActive="active" class="nav-item"
+          aria-label="Admin Dashboard">
+          <mat-icon>dashboard</mat-icon>
+          <span class="nav-text">Admin Dashboard</span>
+        </a>
+        <!-- New User -->
+        <a mat-list-item [routerLink]="['/register']" routerLinkActive="active" class="nav-item" aria-label="Register"
+          *ngIf="!isAdmin">
+          <mat-icon>person_add</mat-icon>
+          <span class="nav-text">Register</span>
+        </a>
 
-      <!-- Upload Document-->
-      <a mat-list-item [routerLink]="['/upload-document']" routerLinkActive="active" class="nav-item" aria-label="Upload Document">
-        <mat-icon>upload_file</mat-icon>
-        <span class="nav-text">Upload Document</span>
-      </a>
+        <!-- Upload Document-->
+        <a mat-list-item [routerLink]="['/upload-document']" routerLinkActive="active" class="nav-item"
+          aria-label="Upload Document" *ngIf="!isAdmin">
+          <mat-icon>upload_file</mat-icon>
+          <span class="nav-text">Upload Document</span>
+        </a>
 
-      <!-- Track Document-->
-      <a mat-list-item [routerLink]="['/track-document']" routerLinkActive="active" class="nav-item" aria-label="Submission Tracking">
-        <mat-icon>analytics</mat-icon>
-        <span class="nav-text">Submission Tracking</span>
-      </a>
+        <!-- Track Document-->
+        <a mat-list-item [routerLink]="['/track-document']" routerLinkActive="active" class="nav-item"
+          aria-label="Submission Tracking" *ngIf="!isAdmin">
+          <mat-icon>analytics</mat-icon>
+          <span class="nav-text">Submission Tracking</span>
+        </a>
 
-      <!-- Request Submission-->
-      <a mat-list-item [routerLink]="['/request-submission']" routerLinkActive="active" class="nav-item" aria-label="Request Submission">
-        <mat-icon>assured_workload</mat-icon>
-        <span class="nav-text">Request Submission</span>
-      </a>
+        <!-- Request Submission-->
+        <a mat-list-item [routerLink]="['/request-submission']" routerLinkActive="active" class="nav-item"
+          aria-label="Request Submission" *ngIf="!isAdmin">
+          <mat-icon>assured_workload</mat-icon>
+          <span class="nav-text">Request Submission</span>
+        </a>
 
-      <!-- Submitted Requests-->
-      <a mat-list-item [routerLink]="['/submitted-requests']" routerLinkActive="active" class="nav-item" aria-label="Submitted Requests">
-        <mat-icon>list</mat-icon>
-        <span class="nav-text">Submitted Requests</span>
-      </a>
+        <!-- Submitted Requests-->
+        <a mat-list-item [routerLink]="['/submitted-requests']" routerLinkActive="active" class="nav-item"
+          aria-label="Submitted Requests" *ngIf="!isAdmin">
+          <mat-icon>list</mat-icon>
+          <span class="nav-text">Submitted Requests</span>
+        </a>
 
-      <!-- Document Verification-->
-      <a mat-list-item [routerLink]="['/document-verification']" routerLinkActive="active" class="nav-item" aria-label="Document Verification">
-        <mat-icon>verified</mat-icon>
-        <span class="nav-text">Document Verification</span>
-      </a>
+        <!-- Document Verification-->
+        <a mat-list-item [routerLink]="['/document-verification']" routerLinkActive="active" class="nav-item"
+          aria-label="Document Verification" *ngIf="isAdmin">
+          <mat-icon>verified</mat-icon>
+          <span class="nav-text">Document Verification</span>
+        </a>
 
-      <!-- Service Request Verification-->
-      <a mat-list-item [routerLink]="['/service-request-verification']" routerLinkActive="active" class="nav-item" aria-label="Service Verification">
-        <mat-icon>check_circle</mat-icon>
-        <span class="nav-text">Service Verification</span>
-      </a>
+        <!-- Service Request Verification-->
+        <a mat-list-item [routerLink]="['/service-request-verification']" routerLinkActive="active" class="nav-item"
+          aria-label="Service Verification" *ngIf="isAdmin">
+          <mat-icon>check_circle</mat-icon>
+          <span class="nav-text">Service Verification</span>
+        </a>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
 

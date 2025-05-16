@@ -23,6 +23,13 @@
             </button>
             <button mat-button color="accent" (click)="onClose()">Cancel</button>
         </div>
+
+        <div class="button-container">
+            <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+                logout
+            </button>
+            <button mat-button color="accent" (click)="onClose()">Cancel</button>
+        </div>
     </form>
 </mat-dialog-content>
 
