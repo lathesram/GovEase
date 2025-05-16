@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { ServiceRequestVerificationComponent } from './service-request-verification/service-request-verification.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { ApiService } from './api.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,14 @@ import { RegistrationComponent } from './registration/registration.component';
     LoginComponent,
     RegistrationComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MaterialModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    FormsModule,
+  ],
   exports: [MaterialModule],
-  providers: [],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -29,12 +29,12 @@
       </a>
 
       <ng-container *ngIf="isLoggedIn">
-        <!-- Admin Dashboard -->
+        <!-- Admin Dashboard
         <a mat-list-item [routerLink]="['/admin-dashboard']" routerLinkActive="active" class="nav-item"
           aria-label="Admin Dashboard">
           <mat-icon>dashboard</mat-icon>
           <span class="nav-text">Admin Dashboard</span>
-        </a>
+        </a> -->
         <!-- New User -->
         <a mat-list-item [routerLink]="['/register']" routerLinkActive="active" class="nav-item" aria-label="Register"
           *ngIf="!isAdmin">

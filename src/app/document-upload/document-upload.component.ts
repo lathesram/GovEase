@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-document-upload',
   standalone: false,
   templateUrl: './document-upload.component.html',
-  styleUrl: './document-upload.component.scss'
+  styleUrl: './document-upload.component.scss',
 })
 export class DocumentUploadComponent {
   uploadForm: FormGroup;
@@ -13,7 +14,7 @@ export class DocumentUploadComponent {
   uploadStatus: string | null = null;
   uploadProgress: number = -1;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private apiService: ApiService) {
     this.uploadForm = this.fb.group({
       title: [''],
     });
@@ -52,10 +53,12 @@ export class DocumentUploadComponent {
           this.uploadProgress += 10;
         } else {
           clearInterval(interval);
-          this.uploadStatus = `File "${this.selectedFile?.name}" uploaded successfully!`;
-          this.uploadForm.reset();
-          this.selectedFile = null;
-          this.uploadProgress = -1;
+          this.apiService.fileUpload(this.selectedFile!).subscribe((result) => {
+            this.uploadStatus = `File "${this.selectedFile?.name}" uploaded successfully!`;
+            this.uploadForm.reset();
+            this.selectedFile = null;
+            this.uploadProgress = -1;
+          });
         }
       }, 200);
     }

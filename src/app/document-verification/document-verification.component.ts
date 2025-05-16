@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService, DocumentVerification } from '../api.service';
 
 @Component({
   selector: 'app-document-verification',
@@ -6,39 +7,36 @@ import { Component } from '@angular/core';
   templateUrl: './document-verification.component.html',
   styleUrl: './document-verification.component.scss',
 })
-export class DocumentVerificationComponent {
-  documents = [
-    {
-      id: 1,
-      name: 'Passport Renewal Document',
-      type: 'Passport',
-      aiValid: 'Pending', // AI validation status can now be 'Valid', 'Invalid', or 'Pending'
-    },
-    {
-      id: 2,
-      name: 'Driver License Renewal',
-      type: 'License',
-      aiValid: 'Valid',
-    },
-    {
-      id: 3,
-      name: 'Birth Certificate',
-      type: 'Certificate',
-      aiValid: 'Invalid',
-    },
-  ];
+export class DocumentVerificationComponent implements OnInit {
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.apiService.getDocumentVerifications().subscribe((data) => {
+      this.documents = data;
+    });
+  }
+
+  documents: DocumentVerification[] = [];
 
   documentOverride: { [key: number]: boolean } = {};
   email: string = '';
   showEmailForm: { [key: number]: boolean } = {};
 
   approveDocument(documentId: number) {
-    console.log(`Document ${documentId} Approved`);
+    this.apiService.verifyDocument('Approve', documentId, ).subscribe((response) => {
+      console.log('Document Approved:', response);
+      this.documentOverride[documentId] = true; // Mark the document as approved
+      this.showEmailForm[documentId] = false; // Hide the email form
+      console.log(`Document ${documentId} Approved`);
+    });
   }
 
   rejectDocument(documentId: number) {
-    console.log(`Document ${documentId} Rejected`);
-    this.showEmailForm[documentId] = true; // Show the email form for the specific document
+    this.apiService.verifyDocument('Removed', documentId, ).subscribe((response) => {
+      console.log('Document Rejected:', response);
+      this.documentOverride[documentId] = false; // Mark the document as approved
+      this.showEmailForm[documentId] = true; // Hide the email form
+    });
   }
 
   downloadDocument(documentId: number) {
@@ -47,7 +45,10 @@ export class DocumentVerificationComponent {
   }
 
   sendRequestEmail(documentId: number) {
-    console.log(`Requesting additional info for Document ${documentId} from:`, this.email);
+    console.log(
+      `Requesting additional info for Document ${documentId} from:`,
+      this.email
+    );
     // Logic to send email requesting additional information
   }
 }

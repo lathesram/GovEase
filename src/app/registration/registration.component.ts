@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-registration',
@@ -11,7 +12,11 @@ import { Router } from '@angular/router';
 export class RegistrationComponent {
   registrationForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private apiService: ApiService
+  ) {
     this.registrationForm = this.fb.group({
       fullName: ['', Validators.required],
       nameWithInitial: ['', Validators.required],
@@ -27,7 +32,12 @@ export class RegistrationComponent {
   onRegister() {
     if (this.registrationForm.valid) {
       console.log('Registration Data:', this.registrationForm.value);
-      alert('Registration Successful!');
+      this.apiService
+        .registerDetails(this.registrationForm.value)
+        .subscribe((response) => {
+          alert('Registration Successful!');
+          this.registrationForm.reset();
+        });
       this.router.navigate(['/']);
     }
   }

@@ -1,56 +1,57 @@
 <div class="submission-page">
-    <header class="submission-header">
-      <h1 class="text-3xl font-bold text-center">Service Request Submission</h1>
-      <p class="text-center text-gray-600 mt-2">Submit your service request and related documents here</p>
-    </header>
-  
-    <main class="submission-container">
-      <form [formGroup]="submissionForm" (ngSubmit)="onSubmit()" class="submission-form">
-        <!-- Service Type Selection -->
-        <div class="mb-6">
-          <mat-form-field appearance="outline" class="col-12">
-            <mat-label>Service Type</mat-label>
-            <mat-select formControlName="serviceType" (selectionChange)="onServiceTypeChange($event.value)">
-              <mat-option *ngFor="let service of services" [value]="service.id">{{ service.name }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+  <header class="submission-header">
+    <h1 class="text-3xl font-bold text-center">Service Request Submission</h1>
+    <p class="text-center text-gray-600 mt-2">Submit your service request and related documents here</p>
+  </header>
 
-        <!-- Instructions Section -->
-        <div *ngIf="selectedServiceInstructions" class="mb-6 instructions-section">
-            <div>
-                <h3 class="text-lg font-semibold">Instructions</h3>
-                <p class="text-gray-600 mt-2">{{ selectedServiceInstructions }}</p>
-            </div>
+  <main class="submission-container">
+    <form [formGroup]="submissionForm" (ngSubmit)="onSubmit()" class="submission-form">
+      <!-- Service Type Selection -->
+      <div class="mb-6">
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Service Type</mat-label>
+          <mat-select formControlName="serviceType" (selectionChange)="onServiceTypeChange($event.value)">
+            <mat-option *ngFor="let service of services" [value]="service.id">{{ service.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Instructions Section -->
+      <div *ngIf="selectedServiceInstructions" class="mb-6 instructions-section">
+        <div>
+          <h3 class="text-lg font-semibold">Instructions</h3>
+          <p class="text-gray-600 mt-2">{{ selectedServiceInstructions }}</p>
         </div>
-  
-        <!-- Uploaded Documents Selection -->
-        <div class="mb-6">
-          <mat-form-field appearance="outline" class="col-12">
-            <mat-label>Uploaded Documents</mat-label>
-            <mat-select formControlName="uploadedDocuments" multiple>
-              <mat-option *ngFor="let doc of uploadedDocuments" [value]="doc.id">{{ doc.name }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-  
-        <!-- Request Description -->
-        <div class="mb-6">
-          <mat-form-field appearance="outline" class="col-12">
-            <mat-label>Request Description</mat-label>
-            <textarea matInput formControlName="description" placeholder="Enter any additional information or details"></textarea>
-          </mat-form-field>
-        </div>
-  
-        <!-- Submit and Reset Buttons -->
-        <div class="mb-6 flex justify-content-between col-12">
-          <button mat-raised-button color="primary" type="submit" [disabled]="!submissionForm.valid">
-            Submit Request
-          </button>
-          <button mat-raised-button color="warn" type="button" (click)="onReset()">
-            Reset
-          </button>
-        </div>
-      </form>
-    </main>
-  </div>
+      </div>
+
+      <!-- Uploaded Documents Selection -->
+      <div class="mb-6">
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Uploaded Documents</mat-label>
+          <mat-select formControlName="uploadedDocuments" multiple>
+            <mat-option *ngFor="let doc of uploadedDocuments" [value]="doc.id">{{ doc.fileName }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Request Description -->
+      <div class="mb-6">
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Request Description</mat-label>
+          <textarea matInput formControlName="description"
+            placeholder="Enter any additional information or details"></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- Submit and Reset Buttons -->
+      <div class="mb-6 flex justify-content-between col-12">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!submissionForm.valid">
+          Submit Request
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+  </main>
+</div>
