@@ -1,7 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
-
+ 
 @Component({
   standalone: false,
   selector: 'app-nav',
@@ -13,27 +13,31 @@ export class NavComponent implements OnInit, OnChanges {
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
   userType: string = '';
-
+ 
   constructor(private dialog: MatDialog) {
     // this.translate.addLangs(['en', 'ta', 'si']);
     // this.translate.setDefaultLang(this.selectedLanguage);
   }
   ngOnChanges(changes: SimpleChanges): void {
-    this.userType = sessionStorage.getItem('role') as string;
+    this.userType = localStorage.getItem('role') as string;
     if (this.userType === 'Admin') {
       this.isAdmin = true;
     } else if (this.userType === 'user') {
       this.isAdmin = false;
     }
   }
-
+ 
   ngOnInit(): void {
-    const userType = sessionStorage.getItem('role');
-    if (userType === 'Admin') {
+    this.userType = localStorage.getItem('role') as string;
+    if (this.userType === 'Admin') {
+      this.isLoggedIn = true;
       this.isAdmin = true;
+    } else if (this.userType === 'user') {
+      this.isLoggedIn = true;
+      this.isAdmin = false;
     }
   }
-
+ 
   openLoginDialog() {
     this.dialog
       .open(LoginComponent)
@@ -47,24 +51,24 @@ export class NavComponent implements OnInit, OnChanges {
               result.password === 'admin'
             ) {
               this.isAdmin = true;
-              sessionStorage.setItem('role', 'Admin');
+              localStorage.setItem('role', 'Admin');
             } else {
               this.isAdmin = false;
-              sessionStorage.setItem('role', 'user');
+              localStorage.setItem('role', 'user');
             }
           }
         }
       });
   }
-
+ 
   changeLanguage(lang: string): void {
     // this.translate.use(lang);
     this.selectedLanguage = lang;
     console.log(`Language changed to: ${lang}`);
   }
-
+ 
   logout() {
-    sessionStorage.removeItem('role');
+    localStorage.removeItem('role');
     this.isLoggedIn = false;
   }
 }

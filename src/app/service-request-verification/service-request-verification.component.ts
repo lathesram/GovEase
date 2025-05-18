@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService, SubmissionRequest } from '../api.service';
 
 @Component({
   selector: 'app-service-request-verification',
@@ -6,28 +7,17 @@ import { Component } from '@angular/core';
   templateUrl: './service-request-verification.component.html',
   styleUrl: './service-request-verification.component.scss',
 })
-export class ServiceRequestVerificationComponent {
+export class ServiceRequestVerificationComponent implements OnInit{
   // Sample data for service requests
-  requests = [
-    {
-      id: 1,
-      type: 'Passport Renewal',
-      description: 'Request for renewing expired passport.',
-      status: 'Pending',
-    },
-    {
-      id: 2,
-      type: 'Driver License Renewal',
-      description: 'Request for renewing driver license.',
-      status: 'Approved',
-    },
-    {
-      id: 3,
-      type: 'Birth Certificate Request',
-      description: 'Request for issuing birth certificate.',
-      status: 'Rejected',
-    },
-  ];
+  requests: SubmissionRequest[] = [];
+
+  constructor(private apiService: ApiService) {}
+  
+    ngOnInit(): void {
+      this.apiService.getRenewalRequests().subscribe((data) => {
+        this.requests = data;
+      });
+    }
 
   // Variable to track email form visibility
   showEmailForm = false;

@@ -54,7 +54,7 @@ export class DocumentUploadComponent {
         } else {
           clearInterval(interval);
           this.apiService.fileUpload(this.selectedFile!).subscribe((result) => {
-            this.uploadStatus = `File "${this.selectedFile?.name}" uploaded successfully!`;
+            this.uploadStatus = `File uploaded successfully!`;
             this.uploadForm.reset();
             this.selectedFile = null;
             this.uploadProgress = -1;

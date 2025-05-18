@@ -38,7 +38,6 @@ export class RegistrationComponent {
           alert('Registration Successful!');
           this.registrationForm.reset();
         });
-      this.router.navigate(['/']);
     }
   }
 
